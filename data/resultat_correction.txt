@@ -1,0 +1,19 @@
+Nombre de pingouins : 344
+Nombre d'individus par espèce de pingouins : 
+	Adelie : 152 
+	Gentoo : 124 
+	Chinstrap : 68 
+Nombre d'espèces de pingouins : 3
+Nombre de pingouins par île : 
+	Torgersen : 52 
+	Biscoe : 168 
+	Dream : 124 
+Nombre d'îles : 3
+Longueur moyenne d'un bec de pingouins : 43.92 mm
+Plus grande profondeur de bec de pingouins : 21.5 mm
+Nombre de pingouins pour chaque sexe : 
+	male : 168 
+	female : 165 
+	unknown : 11 
+Age du pingouin le plus jeune : 14 ans
+Age du pingouin le plus âgé : 16 ans

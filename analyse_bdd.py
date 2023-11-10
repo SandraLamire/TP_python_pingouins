@@ -22,19 +22,23 @@ print("#######################################################")
 cursor1 = connexion.cursor()
 cursor1.execute('SELECT espece, COUNT(*) AS nb_individus FROM dbo.Pingouins GROUP BY espece')
 # fetchall pour récupérer tous les résultats sur plusieurs lignes
-resultats = cursor1.fetchall()
-for row in resultats:
-    espece, nb_individus = row
-    print(f"Il y a {nb_individus} individus de l'espèce {espece}")
+resultats1 = cursor1.fetchall()
+print("il y a :")
+for row in resultats1:
+    espece, nb_individus_par_espece = row
+    print(f"\t- {nb_individus_par_espece} individus de l'espèce {espece}")
 cursor1.close()
 
 print("#######################################################")
 
 # -	Combien il y a-t-il d’espèces ?
 cursor2 = connexion.cursor()
-cursor2.execute('SELECT COUNT(DISTINCT espece) FROM dbo.Pingouins')
-nb_especes = cursor2.fetchone()[0]
-print(f"Il y a {nb_especes} espèces différentes")
+cursor2.execute('SELECT espece, COUNT(*) FROM dbo.Pingouins GROUP BY espece')
+resultat_especes = cursor2.fetchall()
+nb_especes = len(resultat_especes)
+print(f"Il y a {nb_especes} espèces différentes :")
+for espece in resultat_especes:
+    print(f"\t- {espece[0]}")
 cursor2.close()
 
 print("#######################################################")
@@ -43,19 +47,23 @@ print("#######################################################")
 cursor3 = connexion.cursor()
 cursor3.execute('SELECT ile, COUNT(*) AS nb_individus_par_ile FROM dbo.Pingouins GROUP BY ile')
 # fetchall pour récupérer tous les résultats sur plusieurs lignes
-resultats = cursor3.fetchall()
-for row in resultats:
+resultats2 = cursor3.fetchall()
+print("Il y a : ")
+for row in resultats2:
     ile, nb_individus_par_ile = row
-    print(f"Il y a {nb_individus_par_ile} individus sur l'île de {ile}")
+    print(f"\t- {nb_individus_par_ile} individus sur l'île de {ile}")
 cursor3.close()
 
 print("#######################################################")
 
 # -	Combien il y a-t-il d’îles ?
 cursor4 = connexion.cursor()
-cursor4.execute('SELECT COUNT(DISTINCT ile) FROM dbo.Pingouins')
-nb_iles = cursor4.fetchone()[0]
-print(f"Il y a {nb_iles} iles")
+cursor4.execute('SELECT ile, COUNT(*) FROM dbo.Pingouins GROUP BY ile')
+resultats_iles = cursor4.fetchall()
+nb_iles = len(resultats_iles)
+print(f"Il y a {nb_iles} îles")
+for ile in resultats_iles:
+    print(f"\t- {ile[0]}")
 cursor4.close()
 
 print("#######################################################")
@@ -81,11 +89,12 @@ print("#######################################################")
 # -	Combien il y a-t-il de pingouins pour chaque sexe ?
 cursor7 = connexion.cursor()
 cursor7.execute('SELECT sex, COUNT(*) FROM dbo.Pingouins GROUP BY sex')
-resultats = cursor7.fetchall()
-for row in resultats:
+resultats_sexe = cursor7.fetchall()
+print("Il y a :")
+for row in resultats_sexe:
     sex, nb_individus_par_sexe = row
     sex_label = "de sexe indéterminé" if sex is None else "femelles" if sex == "female" else "mâles" if sex == "male" else sex
-    print(f"Il y a {nb_individus_par_sexe} individus {sex_label}")
+    print(f"\t- {nb_individus_par_sexe} individus {sex_label}")
 cursor7.close()
 
 
@@ -109,3 +118,51 @@ cursor9.close()
 
 print("#######################################################")
 connexion.close()
+
+with open("data/resultats_bdd.txt", "w", encoding="UTF-8") as resultats_file:
+    resultats_file.write(f"Nombre total de pingouins : {total_pingouins}\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Nombre d'individus par espece : \n")
+    for row in resultats1:
+        espece, nb_individus_par_espece = row
+        resultats_file.write(f"\t- {nb_individus_par_espece} individus de l'espèce {espece}\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Il y a {nb_especes} espèces différentes :\n")
+    for espece in resultat_especes:
+        resultats_file.write(f"\t- {espece[0]}\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Nombre d'individus par île :\n")
+    for row in resultats2:
+        ile, nb_individus_par_ile = row
+        resultats_file.write(f"\t- {nb_individus_par_ile} individus sur l'île de {ile}\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Il y a {nb_iles} îles :\n")
+    for ile in resultats_iles:
+        resultats_file.write(f"\t- {ile[0]}\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"La longueur moyenne des becs est de {longueur_bec_moyenne} mm\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"La plus grande profondeur de bec est de {profondeur_bec_max} mm\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Nombre d'individus de chaque sexe :\n")
+    for row in resultats_sexe:
+        sex, nb_individus_par_sexe = row
+        sex_label = "de sexe indéterminé" if sex is None else "femelles" if sex == "female" else "mâles" if sex == "male" else sex
+        resultats_file.write(f"\t- {nb_individus_par_sexe} {sex_label}\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Le plus jeune pingouin a {age_min} ans\n")
+    resultats_file.write("\n")
+
+    resultats_file.write(f"Le pingouin le plus âgée a {age_max} ans\n")
+    resultats_file.write("\n")
+
+
+

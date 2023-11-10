@@ -1,0 +1,35 @@
+Nombre total de pingouins : 344
+
+Nombre d'individus par espece : 
+	- 152 individus de l'espèce Adelie
+	- 68 individus de l'espèce Chinstrap
+	- 124 individus de l'espèce Gentoo
+
+Il y a 3 espèces différentes :
+	- Adelie
+	- Chinstrap
+	- Gentoo
+
+Nombre d'individus par île :
+	- 168 individus sur l'île de Biscoe
+	- 124 individus sur l'île de Dream
+	- 52 individus sur l'île de Torgersen
+
+Il y a 3 îles :
+	- Biscoe
+	- Dream
+	- Torgersen
+
+La longueur moyenne des becs est de 44.04 mm
+
+La plus grande profondeur de bec est de 21.5 mm
+
+Nombre d'individus de chaque sexe :
+	- 11 de sexe indéterminé
+	- 165 femelles
+	- 168 mâles
+
+Le plus jeune pingouin a 14 ans
+
+Le pingouin le plus âgée a 16 ans
+

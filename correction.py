@@ -50,7 +50,7 @@ with open("data/pingouins.txt") as f:
 
 print("Début du traitement : ")
 
-with open("resultat.txt", "w", encoding="UTF-8") as f_result:
+with open("data/resultat_correction.txt", "w", encoding="UTF-8") as f_result:
     f_result.write(f"Nombre de pingouins : {nb_penguins}\n")
     f_result.write("Nombre d'individus par espèce de pingouins : \n")
     for key, value in nb_penguins_by_species.items():
@@ -68,4 +68,4 @@ with open("resultat.txt", "w", encoding="UTF-8") as f_result:
     f_result.write(f"Age du pingouin le plus jeune : {youngest_penguin} ans\n")
     f_result.write(f"Age du pingouin le plus âgé : {oldest_penguin} ans\n")
 
-print("Fin du traitement dans le fichier : resultat.txt")
+print("Fin du traitement dans le fichier : data/resultat_correction.txt")
