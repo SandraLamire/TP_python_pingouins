@@ -20,7 +20,7 @@ Il y a 3 îles :
 	- Dream
 	- Torgersen
 
-La longueur moyenne des becs est de 44.04 mm
+La longueur moyenne des becs est de 43.92 mm
 
 La plus grande profondeur de bec est de 21.5 mm
 
